@@ -2,8 +2,9 @@ package com.example.stopwatch
 
 import android.os.Bundle
 import android.os.SystemClock
-import android.widget.Button
-import android.widget.Chronometer
+import android.util.Log
+//import android.widget.Button
+//import android.widget.Chronometer
 import androidx.appcompat.app.AppCompatActivity
 import com.example.stopwatch.databinding.ActivityMainBinding
 
@@ -18,10 +19,13 @@ class MainActivity : AppCompatActivity() {
     val RUNNING_KEY = "running"
     val BASE_KEY = "base"
 
+    private val stopWatchTag = "StopWatch"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
 
+        Log.d(stopWatchTag, "onCreate called")
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -66,6 +70,9 @@ class MainActivity : AppCompatActivity() {
 //        super.onStop()
     override fun onPause() {
         super.onPause()
+
+        Log.d(stopWatchTag, "onPause called")
+
         if (running) {
             saveOffset()
             binding.stopwatch.stop()
@@ -76,6 +83,9 @@ class MainActivity : AppCompatActivity() {
 //        super.onRestart()
     override fun onResume() {
         super.onResume()
+
+        Log.d(stopWatchTag, "onResume called")
+
         if (running) {
             setBaseTime()
             binding.stopwatch.start()
